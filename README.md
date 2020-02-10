@@ -25,4 +25,5 @@ is the location where `siad` installs the password by default.
 ## Configuring siad
 
 To make the portal software work `siad` needs to be configured as a portal node.
-To do this you need to set an allowance. More info here
+To do this you need to set an allowance. More info
+[here](https://support.sia.tech/article/thvymhf1ff-about-renting)
