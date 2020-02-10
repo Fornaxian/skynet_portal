@@ -5,38 +5,19 @@
 
 :root {
 	--text_color:                 #b2b2b2;
-	--input_color:                #121212;
-	--input_color_dark:           #101010;
+	--input_color:                #222222;
+	--input_color_dark:           #202020;
 	--input_text_color:           #ffffff;
 	--highlight_color:            #f3871b;
 	--highlight_color_dark:       #e37a04;
 	--highlight_text_color:       #000000;
 	--danger_color:               #821b3f;
 	--danger_color_dark:          #751839;
-	--file_background_color:      #101010;
 	--scrollbar_foreground_color: #595959;
 	--scrollbar_hover_color:      #727272;
 	--scrollbar_background_color: #000000;
 
-	--background_color:           #000000;
-	--body_color:                 #111111;
-
-	--layer_1_color:        #1c1c1c;
-	--layer_1_color_border: #282828;
-	--layer_1_shadow:       3px;
-	--layer_2_color:        #212121;
-	--layer_2_color_border: #2d2d2d;
-	--layer_2_shadow:       5px;
-	--layer_3_color:        #232323;
-	--layer_3_color_border: #303030;
-	--layer_3_shadow:       7px;
-	--layer_4_color:        #232323;
-	--layer_4_color_border: #303030;
-	--layer_4_shadow:       9px;
-
 	--shadow_color:     #000000;
-	--shadow_spread:    7px;
-	--shadow_intensity: 0px;
 	--highlight_border: inset 0px 0px 5px 1px var(--highlight_color), 0px 0px 1px 0px var(--highlight_color);
 }
 
@@ -81,7 +62,7 @@ h3{font-size: 1.5em;  font-family: "light", sans-serif; font-weight: normal;}
 h4{font-size: 1.25em; font-family: sans-serif; font-weight: normal;}
 h5{font-size: 1em;    font-family: sans-serif; font-weight: normal;}
 h6{font-size: .75em;  font-family: sans-serif; font-weight: normal;}
-h2, h3{border-bottom: 1px var(--layer_3_color_border) solid;} /* Differentiate it a bit, else it just looks like bold text */
+h2, h3{border-bottom: 1px var(--input_color) solid;} /* Differentiate it a bit, else it just looks like bold text */
 
 p, .indent {
 	margin: 10px;
@@ -100,21 +81,6 @@ a {
 }
 a:hover {text-decoration: underline;}
 
-pre{
-	padding: 2px;
-	border-bottom: 1px var(--layer_2_color_border) solid;
-	overflow-x: scroll;
-}
-
-.big_button{
-	width: 40%;
-	min-width: 200px;
-	max-width: 400px;
-	margin: 10px !important;
-	border-radius: 5px;
-	font-size: 1.8em;
-}
-
 .file_button{
 	position: relative;
 	box-sizing: border-box;
@@ -124,8 +90,8 @@ pre{
 	margin: 10px 0;
 	overflow: hidden;
 	border-radius: 2px;
-	box-shadow: 2px 2px 8px -3px var(--shadow_color);
-	background-color: var(--file_background_color);
+	box-shadow: none;
+	background-color: var(--input_color_dark);
 	color: #bfbfbf; /* Fallback */
 	color: var(--text_color);
 	word-break: break-all;
@@ -196,7 +162,6 @@ select {
 	margin: 3px;
 	background: linear-gradient(var(--input_color), var(--input_color_dark));
 	padding: .4em .5em .4em .5em;
-	box-shadow: 2px 2px 6px -3px var(--shadow_color);
 	font-size: 0.9em;
 	line-height: 1em;
 	overflow: hidden;
