@@ -175,7 +175,7 @@
 					btn.classList          = "file_button"
 
 					let linkNode = document.createElement("a")
-					linkNode.href = file.link
+					linkNode.href = file.link.replace("sia://", "https://sky.pixeldrain.com/")
 					linkNode.target = "_blank"
 					linkNode.innerText = file.link+"\n"+file.name
 
@@ -184,9 +184,9 @@
 					copyBtn.addEventListener("click", e => {
 						let node = document.createElement("span")
 						if (copyLink(file.link)) {
-							node.innerText = "Link copied!\n"
+							node.innerText = "skylink copied!\n"
 						} else {
-							node.innerText = "Copy failed, please copy link manually!\n"
+							node.innerText = "copy failed, please copy link manually\n"
 						}
 						btn.prepend(node)
 

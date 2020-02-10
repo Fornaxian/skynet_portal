@@ -92,7 +92,7 @@ UploadProgressBar.prototype.addHistory = function(link, name) {
 	}
 
 	// Check if there are not too many values stored
-	if (uploads.length > 100) {
+	if (uploads.length > 1000) {
 		uploads.pop()
 		uploads.pop()
 	}
