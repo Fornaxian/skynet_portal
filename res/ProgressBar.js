@@ -69,7 +69,7 @@ UploadProgressBar.prototype.onFailure = function(val, msg) {
 }
 UploadProgressBar.prototype.copyLink = function(text) {
 	let node = document.createElement("span")
-	if (copyText(text)) {
+	if (copyLink(text)) {
 		node.innerText = "Link copied!\n"
 	} else {
 		node.innerText = "Copy failed, please copy link manually!\n"

@@ -181,7 +181,7 @@
 					copyBtn.src = "/res/copy.svg"
 					copyBtn.addEventListener("click", e => {
 						let node = document.createElement("span")
-						if (copyText(file.link)) {
+						if (copyLink(file.link)) {
 							node.innerText = "Link copied!\n"
 						} else {
 							node.innerText = "Copy failed, please copy link manually!\n"
