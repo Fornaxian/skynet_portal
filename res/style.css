@@ -1,0 +1,350 @@
+/*
+    Created on : Jun 3, 2015, 9:33:11 AM
+    Author     : Fornax
+*/
+
+:root {
+	--text_color:                 #b2b2b2;
+	--input_color:                #121212;
+	--input_color_dark:           #101010;
+	--input_text_color:           #ffffff;
+	--highlight_color:            #f3871b;
+	--highlight_color_dark:       #e37a04;
+	--highlight_text_color:       #000000;
+	--danger_color:               #821b3f;
+	--danger_color_dark:          #751839;
+	--file_background_color:      #101010;
+	--scrollbar_foreground_color: #595959;
+	--scrollbar_hover_color:      #727272;
+	--scrollbar_background_color: #000000;
+
+	--background_color:           #000000;
+	--body_color:                 #111111;
+
+	--layer_1_color:        #1c1c1c;
+	--layer_1_color_border: #282828;
+	--layer_1_shadow:       3px;
+	--layer_2_color:        #212121;
+	--layer_2_color_border: #2d2d2d;
+	--layer_2_shadow:       5px;
+	--layer_3_color:        #232323;
+	--layer_3_color_border: #303030;
+	--layer_3_shadow:       7px;
+	--layer_4_color:        #232323;
+	--layer_4_color_border: #303030;
+	--layer_4_shadow:       9px;
+
+	--shadow_color:     #000000;
+	--shadow_spread:    7px;
+	--shadow_intensity: 0px;
+	--highlight_border: inset 0px 0px 5px 1px var(--highlight_color), 0px 0px 1px 0px var(--highlight_color);
+}
+
+html, body {
+	background-color: #000000;
+	color: var(--text_color);
+	margin: 0;
+	padding: 0;
+}
+.page_body {
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	height: auto;
+	padding: 20px 0 20px 0;
+	box-sizing: border-box;
+	clear: both;
+	text-align: center;
+}
+.page_content {
+	position: relative;
+	display: inline-block;
+	max-width: 1000px;
+	width: 100%;
+	height: auto;
+	padding: 0;
+	box-sizing: border-box;
+	text-align: left;
+	clear: both;
+}
+
+/* Common elements */
+
+h1, h2, h3, h4, h5, h6 {
+	line-height: 1em;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+h1{font-size: 2em;    font-family: "light", sans-serif; font-weight: normal;}
+h2{font-size: 1.75em; font-family: "light", sans-serif; font-weight: normal;}
+h3{font-size: 1.5em;  font-family: "light", sans-serif; font-weight: normal;}
+h4{font-size: 1.25em; font-family: sans-serif; font-weight: normal;}
+h5{font-size: 1em;    font-family: sans-serif; font-weight: normal;}
+h6{font-size: .75em;  font-family: sans-serif; font-weight: normal;}
+h2, h3{border-bottom: 1px var(--layer_3_color_border) solid;} /* Differentiate it a bit, else it just looks like bold text */
+
+p, .indent {
+	margin: 10px;
+}
+
+hr{
+	height: 1px;
+	border: none;
+	background-color: var(--input_color);
+	margin: 16px 16px 16px 16px;
+}
+
+a {
+	color: var(--highlight_color);
+	text-decoration: none;
+}
+a:hover {text-decoration: underline;}
+
+pre{
+	padding: 2px;
+	border-bottom: 1px var(--layer_2_color_border) solid;
+	overflow-x: scroll;
+}
+
+.big_button{
+	width: 40%;
+	min-width: 200px;
+	max-width: 400px;
+	margin: 10px !important;
+	border-radius: 5px;
+	font-size: 1.8em;
+}
+
+.file_button{
+	position: relative;
+	box-sizing: border-box;
+	width: 100%;
+	height: 3.5em;
+	padding: 0.5em;
+	margin: 10px 0;
+	overflow: hidden;
+	border-radius: 2px;
+	box-shadow: 2px 2px 8px -3px var(--shadow_color);
+	background-color: var(--file_background_color);
+	color: #bfbfbf; /* Fallback */
+	color: var(--text_color);
+	word-break: break-all;
+	text-align: left;
+	line-height: 1.2em;
+	font-family: monospace;
+	display: inline-block;
+	transition: box-shadow 0.3s, opacity 2s;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	vertical-align: top;
+}
+.file_button:hover,
+.file_button_selected {
+	box-shadow: 0px 0px 3px 3px var(--highlight_color);
+	text-decoration: none;
+	color: #bfbfbf; /* Fallback */
+	color: var(--text_color);
+}
+.file_button > img{
+	top: 10%;
+	right: 0;
+	height: 80%;
+	position: absolute;
+	cursor: pointer;
+}
+.file_button > a{
+	font-family: monospace;
+	display: inline-block;
+	text-decoration: none;
+	color: var(--highlight_color);
+}
+
+/* Form fields */
+
+.form {
+	display: flex;
+	flex-direction: row;
+}
+
+.drop_zone {
+	width: 100%;
+	transition: box-shadow 0.5s;
+	box-shadow: 0px 0px 20px -10px var(--highlight_color_dark);
+	border-radius: 20px;
+	text-align: center;
+	font-size: 200%;
+	color: #303030;
+	padding: 10px;
+	box-sizing: border-box;
+	cursor: pointer;
+}
+.drop_zone:hover {
+	box-shadow: 0px 0px 20px 0px var(--highlight_color_dark);
+}
+
+/* BUTTONS */
+button,
+.button,
+input[type="submit"],
+input[type="button"],
+input[type="color"],
+select {
+	display: inline-block;
+	box-sizing: border-box;
+	border-radius: 2px;
+	border: none;
+	margin: 3px;
+	background: linear-gradient(var(--input_color), var(--input_color_dark));
+	padding: .4em .5em .4em .5em;
+	box-shadow: 2px 2px 6px -3px var(--shadow_color);
+	font-size: 0.9em;
+	line-height: 1em;
+	overflow: hidden;
+	text-decoration: none;
+	color: #bfbfbf; /* Fallback */
+	color: var(--input_text_color);
+	outline: 0;
+	cursor: pointer;
+	transition: padding 0.25s, box-shadow 0.25s;
+}
+button:hover,
+.button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+input[type="color"]:hover,
+select:hover,
+button:focus,
+.button:focus,
+input[type="submit"]:focus,
+input[type="button"]:focus,
+input[type="color"]:focus,
+select:focus {
+	color: #bfbfbf; /* Fallback */
+	color: var(--input_text_color);
+	text-decoration: none;
+	box-shadow: var(--highlight_border), 2px 2px 6px -3px var(--shadow_color);
+}
+button:active,
+.button:active,
+input[type="submit"]:active,
+input[type="button"]:active,
+input[type="color"]:active,
+select:active{
+	background: linear-gradient(var(--input_color_dark), var(--input_color));
+	box-shadow: inset 4px 4px 8px var(--shadow_color);
+	padding: .6em .3em .2em .7em; /* Exactly .2em offset compared to the inactive padding to give a depth effect */
+}
+.button_full_width      {width: calc(100% - 6px);}
+.button_highlight       {background: linear-gradient(var(--highlight_color),      var(--highlight_color_dark)) !important; color: var(--highlight_text_color) !important;}
+.button_highlight:active{background: linear-gradient(var(--highlight_color_dark), var(--highlight_color)) !important;      color: var(--highlight_text_color) !important;}
+.button_red             {background: linear-gradient(var(--danger_color),         var(--danger_color_dark)) !important;    color: var(--highlight_text_color) !important;}
+.button_red:active      {background: linear-gradient(var(--danger_color_dark),    var(--danger_color)) !important;         color: var(--highlight_text_color) !important;}
+
+/* Dropdown list of the select tag */
+option{
+	background-color: var(--input_color_dark);
+	color: #bfbfbf; /* Fallback */
+	color: var(--text_color);
+}
+
+/* TEXT FIELDS */
+textarea,
+.groove,
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"]{
+	display: inline-block;
+	margin: 3px; /* Same as button, to make them align nicely */
+	border: none;
+	box-sizing: border-box;
+	border-radius: 3px;
+	background: linear-gradient(var(--input_color_dark), var(--input_color));
+	box-shadow: inset 2px 2px 6px -3px var(--shadow_color);
+	padding: 3px 5px;
+	color: var(--input_text_color);
+	font-size: 1em;
+	outline: 0;
+	transition: box-shadow 0.3s;
+}
+textarea:active,
+input[type="text"]:active,
+input[type="password"]:active,
+input[type="email"]:active,
+input[type="number"]:active,
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus{
+	box-shadow: var(--highlight_border), inset 3px 3px 6px -3px var(--shadow_color);
+}
+
+input[type=file]{
+	visibility: hidden;
+	position: static;
+	width: 0;
+	height: 0;
+}
+
+/* Webkit Scrollbars */
+
+::-webkit-scrollbar{
+	width: 18px;  /* for vertical scrollbars */
+	height: 18px; /* for horizontal scrollbars */
+}
+::-webkit-scrollbar-track {
+	background: var(--scrollbar_background_color);
+}
+::-webkit-scrollbar-thumb {
+	background-color: var(--scrollbar_foreground_color);
+	border-radius: 10px;
+	border: 5px solid var(--scrollbar_background_color);
+}
+::-webkit-scrollbar-thumb:hover {
+	background-color: var(--scrollbar_hover_color);
+}
+::-webkit-scrollbar-corner{
+	background-color: var(--scrollbar_background_color);
+}
+::-webkit-scrollbar-button:single-button {
+	background-color: var(--scrollbar_background_color);
+	display: block;
+	border-style: solid;
+	height: 10px;
+	width: 10px;
+}
+::-webkit-scrollbar-button:single-button:vertical:decrement {
+	border-width: 0 8px 8px 8px;
+	border-color: transparent transparent var(--scrollbar_foreground_color) transparent;
+}
+::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
+	border-color: transparent transparent var(--scrollbar_hover_color) transparent;
+}
+::-webkit-scrollbar-button:single-button:vertical:increment {
+	border-width: 8px 8px 0 8px;
+	border-color: var(--scrollbar_foreground_color) transparent transparent transparent;
+}
+::-webkit-scrollbar-button:vertical:single-button:increment:hover {
+	border-color: var(--scrollbar_hover_color) transparent transparent transparent;
+}
+::-webkit-scrollbar-button:single-button:horizontal:decrement {
+	border-width: 8px 8px 8px 0px;
+	border-color: transparent var(--scrollbar_foreground_color) transparent transparent;
+}
+::-webkit-scrollbar-button:single-button:horizontal:decrement:hover {
+	border-color: transparent var(--scrollbar_hover_color) transparent transparent;
+}
+::-webkit-scrollbar-button:single-button:horizontal:increment {
+	border-width: 8px 0px 8px 8px;
+	border-color: transparent transparent transparent var(--scrollbar_foreground_color);
+}
+::-webkit-scrollbar-button:horizontal:single-button:increment:hover {
+    border-color: transparent transparent transparent var(--scrollbar_hover_color);
+}
+
+/* Firefox Scrollbar */
+
+* {
+	scrollbar-color: dark;
+}
