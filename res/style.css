@@ -69,6 +69,10 @@ hr{
 	margin: 16px 16px 16px 16px;
 }
 
+p {
+	text-align: justify;
+}
+
 a {
 	color: var(--highlight_color);
 	text-decoration: none;
