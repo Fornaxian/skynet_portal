@@ -37,29 +37,35 @@ func main() {
 		"Date",
 	}
 
+	var p = proxy{
+		siaPassword:         siaPassword,
+		siadURL:             *siadURL,
+		copyRequestHeaders:  headers,
+		copyResponseHeaders: headers,
+	}
+
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if len(r.URL.Path) == 47 {
-			skylinkProxy(
+			p.getSkylinkProxy(
 				w, r, siaPassword,
-				*siadURL+"/skynet/skylink/"+strings.TrimPrefix(r.URL.Path, "/"),
-				headers, headers, true,
+				"/skynet/skylink/"+strings.TrimPrefix(r.URL.Path, "/"),
+				true,
 			)
 			return
 		}
 		http.ServeFile(w, r, *resourceDir+"/index.html")
 	})
 	mux.HandleFunc("/file/", func(w http.ResponseWriter, r *http.Request) {
-		skylinkProxy(
+		p.getSkylinkProxy(
 			w, r, siaPassword,
-			*siadURL+"/skynet/skylink/"+strings.TrimPrefix(r.URL.Path, "/file/"),
-			headers, headers, false,
+			"/skynet/skylink/"+strings.TrimPrefix(r.URL.Path, "/file/"),
+			false,
 		)
 	})
 	mux.HandleFunc("/api/skyfile", func(w http.ResponseWriter, r *http.Request) {
-		skylinkProxy(
+		p.postSkylinkProxy(
 			w, r, siaPassword,
-			*siadURL+"/skynet/skyfile/uploads/"+time.Now().Format("2006-01-02_15:04:05.000000000"),
-			headers, headers, false,
+			"/skynet/skyfile/uploads/"+time.Now().Format("2006-01-02_15:04:05.000000000"),
 		)
 	})
 	mux.HandleFunc("/res/", func(w http.ResponseWriter, r *http.Request) {

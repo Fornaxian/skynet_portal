@@ -98,6 +98,9 @@ UploadManager.prototype.uploadThread = function() {
 	let job = this.uploadQueue.shift(); // Get the first element of the array
 	console.debug("Starting upload of " + job.name);
 
+	let form = new FormData();
+	form.append('file', job.file, job.name);
+
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", this.uploadEndpoint, true);
 	xhr.timeout = 21600000; // 6 hours, to account for slow connections
@@ -158,5 +161,5 @@ UploadManager.prototype.uploadThread = function() {
 			window.setTimeout(() => { this.finishUpload(); }, 5000);
 		}
 	};
-	xhr.send(job.file);
+	xhr.send(form);
 }
