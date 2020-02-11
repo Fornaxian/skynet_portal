@@ -1,0 +1,17 @@
+[Unit]
+Description=Fornaxian Skynet Portal
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/skyportal
+KillSignal=SIGINT
+WorkingDirectory=/home/sia
+User=sia
+Restart=always
+RestartSec=1
+TimeoutSec=600
+
+[Install]
+WantedBy=multi-user.target
+Alias=skyportal.service
