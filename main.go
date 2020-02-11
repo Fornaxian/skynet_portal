@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"os"
 	"strings"
-	"time"
 )
 
 func main() {
@@ -23,51 +22,17 @@ func main() {
 	siaPassword := strings.TrimSpace(string(apipass))
 
 	mux := http.NewServeMux()
-
-	// Headers which will be copied from the client to the server and from the
-	// server to the client when proxying a request
-	headers := []string{
-		"Accept",
-		"Range",
-		"Accept-Ranges",
-		"Content-Length",
-		"Content-Range",
-		"Content-Type",
-		"Content-Disposition",
-		"Date",
-	}
-
-	var p = proxy{
-		siaPassword:         siaPassword,
-		siadURL:             *siadURL,
-		copyRequestHeaders:  headers,
-		copyResponseHeaders: headers,
-	}
+	p := proxy{siaPassword: siaPassword, siadURL: *siadURL}
 
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if len(r.URL.Path) == 47 {
-			p.getSkylinkProxy(
-				w, r, siaPassword,
-				"/skynet/skylink/"+strings.TrimPrefix(r.URL.Path, "/"),
-				true,
-			)
+			p.getSkylinkProxy(w, r)
 			return
 		}
 		http.ServeFile(w, r, *resourceDir+"/index.html")
 	})
-	mux.HandleFunc("/file/", func(w http.ResponseWriter, r *http.Request) {
-		p.getSkylinkProxy(
-			w, r, siaPassword,
-			"/skynet/skylink/"+strings.TrimPrefix(r.URL.Path, "/file/"),
-			false,
-		)
-	})
-	mux.HandleFunc("/api/skyfile", func(w http.ResponseWriter, r *http.Request) {
-		p.postSkylinkProxy(
-			w, r, siaPassword,
-			"/skynet/skyfile/uploads/"+time.Now().Format("2006-01-02_15:04:05.000000000"),
-		)
-	})
+	mux.HandleFunc("/file/", p.getRawSkylinkProxy)
+	mux.HandleFunc("/api/skyfile", p.postSkylinkProxy)
 	mux.HandleFunc("/res/", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, *resourceDir+"/"+strings.TrimPrefix(r.URL.Path, "/res/"))
 	})
