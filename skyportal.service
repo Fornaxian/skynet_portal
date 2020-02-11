@@ -4,9 +4,9 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/skyportal
+ExecStart=/usr/local/bin/skyportal --res=skynet_portal/res
 KillSignal=SIGINT
-WorkingDirectory=/home/sia
+WorkingDirectory=/home/sia/
 User=sia
 Restart=always
 RestartSec=1
