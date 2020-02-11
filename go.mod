@@ -1,3 +1,3 @@
-module fornaxian.com/pd_skynet_portal
+module github.com/Fornaxian/skynet_portal
 
 go 1.13
