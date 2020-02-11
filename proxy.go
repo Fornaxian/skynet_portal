@@ -7,6 +7,7 @@ import (
 	"mime"
 	"net/http"
 	"strconv"
+	"strings"
 )
 
 func skylinkProxy(
@@ -81,7 +82,10 @@ func skylinkProxy(
 	// If the file is less than 16 MiB and it's a text file we'll replace all
 	// skylinks with normal links pointing at this portal
 	if replaceSkylinks && length != 0 && length < 1<<24 &&
-		(ctype == "text/plain" || ctype == "text/html" || ctype == "text/css") {
+		(strings.HasPrefix(ctype, "text/plain") ||
+			strings.HasPrefix(ctype, "text/html") ||
+			strings.HasPrefix(ctype, "text/css")) {
+
 		content, err := ioutil.ReadAll(resp.Body)
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
