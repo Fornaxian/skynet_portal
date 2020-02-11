@@ -1,6 +1,7 @@
 # Fornaxian Portal
 
-This is the portal software for Skynet by Fornaxian Technologies. You can see how it works [here](https://sky.pixeldrain.com).
+This is the portal software for Skynet by Fornaxian Technologies. You can see
+how it works [here](https://sky.pixeldrain.com).
 
 ## Compiling
 
@@ -15,7 +16,7 @@ go build -o portal main.go proxy.go
 The portal uses a few commandline flags for configuration:
 
  * `--listen` the address this server will listen on. Defaults to `:8082`
- * `--res` the directory there the resouces are stored. This should point at the
+ * `--res` the directory where the resouces are stored. This should point at the
    `res` directory in this repository. Defaults to `res`
  * `--siad-url` the URL of the `siad` API to use. Defaults to `http://127.0.0.1:9980`
 
