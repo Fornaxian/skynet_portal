@@ -16,6 +16,7 @@
 			<br/>
 			<div class="page_content">
 				<h1>open skylink</h1>
+				<span id="open_skylink_caption"></span>
 				<form id="open_link_form" class="form">
 					<input id="skylink_entry" type="text" placeholder="sia://" autofocus="autofocus" style="flex-grow: 1;" />
 					<input id="skylink_submit" type="submit" value="open" style="flex-grow: 0;" />
@@ -94,11 +95,21 @@
 		<script src="/res/ProgressBar.js"></script>
 		<script>
 			document.getElementById("open_link_form").addEventListener("submit", e => {
-				let link = document.getElementById("skylink_entry").value
-				link = link.replace("sia://", "")
-				window.location.href = link
 				e.preventDefault()
 				e.stopPropagation()
+
+				let link = document.getElementById("skylink_entry").value
+				link = link.replace("sia://", "")
+
+				let caption = document.getElementById("open_skylink_caption")
+				if (link.length !== 46) {
+					caption.innerText = "invalid skylink: links are always 46 characters long"
+					return
+				} else {
+					caption.innerText = ""
+				}
+
+				window.location.href = link
 			})
 
 			document.getElementById("drop_zone").addEventListener("click", e => {
