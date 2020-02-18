@@ -6,7 +6,6 @@ import (
 	"io/ioutil"
 	"mime"
 	"net/http"
-	"net/url"
 	"strconv"
 	"strings"
 	"time"
@@ -174,36 +173,13 @@ func (p proxy) getRawSkylinkProxy(w http.ResponseWriter, r *http.Request) {
 }
 
 func (p proxy) postSkylinkProxy(w http.ResponseWriter, r *http.Request) {
-	// Get the file from the multipart request
-	mpr, err := r.MultipartReader()
-	if err != nil {
-		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte("No multipart headers found"))
-		return
-	}
-	part, err := mpr.NextPart()
-	if err != nil {
-		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte("No multipart headers found"))
-		return
-	}
-	defer part.Close()
-
-	if part.FormName() != "file" {
-		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte("First multipart should be file"))
-		return
-	}
-
 	resp, err := p.siadRequest(
 		w, r,
 		[]string{"Accept", "Accept-Laguange", "Content-Length", "Content-Type"},
 		[]string{"Content-Type", "Content-Length", "Content-Disposition", "Date", "Last-Modified"},
 		r.Method,
-		"/skynet/skyfile/uploads/"+
-			time.Now().Format("2006-01-02_15:04:05.000000000")+
-			"?name="+url.QueryEscape(part.FileName()),
-		part,
+		"/skynet/skyfile/uploads/"+time.Now().Format("2006-01-02_15:04:05.000000000"),
+		r.Body,
 	)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)

@@ -32,7 +32,7 @@ func main() {
 		http.ServeFile(w, r, *resourceDir+"/index.html")
 	})
 	mux.HandleFunc("/file/", p.getRawSkylinkProxy)
-	mux.HandleFunc("/api/skyfile", p.postSkylinkProxy)
+	mux.HandleFunc("/skynet/skyfile", p.postSkylinkProxy)
 	mux.HandleFunc("/res/", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, *resourceDir+"/"+strings.TrimPrefix(r.URL.Path, "/res/"))
 	})
