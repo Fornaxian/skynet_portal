@@ -34,7 +34,7 @@ func main() {
 		http.ServeFile(w, r, *resourceDir+"/index.html")
 	})
 	mux.HandleFunc("/file/", func(w http.ResponseWriter, r *http.Request) {
-		p.getSkylinkProxy(w, r, strings.TrimPrefix(r.URL.Path, "/file/"))
+		p.getSkylinkProxy(w, r, strings.TrimPrefix(r.URL.Path, "/file/")+"?attachment=true")
 	})
 	mux.HandleFunc("/skynet/skyfile", p.postSkylinkProxy)
 	mux.HandleFunc("/skynet/skyfile/", p.postSkylinkProxy)
@@ -104,11 +104,7 @@ func (p proxy) siadRequest(
 }
 
 func (p proxy) getSkylinkProxy(w http.ResponseWriter, r *http.Request, skylink string) {
-	resp, err := p.siadRequest(
-		w, r, "GET",
-		"/skynet/skylink/"+strings.TrimPrefix(r.URL.Path, "/"),
-		r.Body,
-	)
+	resp, err := p.siadRequest(w, r, "GET", "/skynet/skylink/"+skylink, r.Body)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("Failed to execute request: " + err.Error()))
