@@ -44,7 +44,7 @@ UploadProgressBar.prototype.onFinished = function(id){
 	linkNode.innerText = link+"\n"+this.file.name
 
 	let copyBtn = document.createElement("img")
-	copyBtn.src = "/res/copy.svg"
+	copyBtn.src = "/copy.svg"
 	copyBtn.addEventListener("click", e => {
 		this.copyLink(link)
 	})

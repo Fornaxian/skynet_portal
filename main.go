@@ -27,8 +27,8 @@ func main() {
 	p := proxy{siaPassword: siaPassword, siadURL: *siadURL}
 
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		if len(r.URL.Path) == 47 {
-			p.getSkylinkProxy(w, r, strings.TrimPrefix(r.URL.Path, "/"))
+		if skylink := strings.Trim(r.URL.Path, "/"); len(skylink) == 46 {
+			p.getSkylinkProxy(w, r, skylink)
 			return
 		}
 		http.ServeFile(w, r, *resourceDir+"/index.html")
