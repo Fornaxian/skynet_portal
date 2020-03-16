@@ -4,14 +4,14 @@
 		<title>Skynet Portal</title>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-		<link rel="shortcut icon" type="image/png" href="/res/icon.png">
+		<link rel="shortcut icon" type="image/png" href="/icon.png">
 
-		<link rel="stylesheet" href="/res/style.css" />
+		<link rel="stylesheet" href="/style.css" />
 	</head>
 	<body>
 		<div id="page_body" class="page_body">
 			<a href="https://pixeldrain.com">
-				<img src="/res/portal.png" style="max-width: 100%" alt="Fornaxian portal logo" />
+				<img src="/portal.png" style="max-width: 100%" alt="Fornaxian portal logo" />
 			</a>
 			<br/>
 			<div class="page_content">
@@ -91,8 +91,8 @@
 				</ul>
 			</div>
 		</div>
-		<script src="/res/UploadManager.js"></script>
-		<script src="/res/ProgressBar.js"></script>
+		<script src="/UploadManager.js"></script>
+		<script src="/ProgressBar.js"></script>
 		<script>
 			document.getElementById("open_link_form").addEventListener("submit", e => {
 				e.preventDefault()
@@ -209,7 +209,7 @@
 					linkNode.innerText = file.link+"\n"+file.name
 
 					let copyBtn = document.createElement("img")
-					copyBtn.src = "/res/copy.svg"
+					copyBtn.src = "/copy.svg"
 					copyBtn.addEventListener("click", e => {
 						let node = document.createElement("span")
 						if (copyLink(file.link)) {
