@@ -101,8 +101,17 @@ UploadManager.prototype.uploadThread = function() {
 	let form = new FormData();
 	form.append('file', job.file, job.name);
 
+	let date = new Date();
+	let dateStr = date.getFullYear()+"-"+
+		date.getMonth()+"-"+
+		date.getDay()+" "+
+		date.getHours()+":"+
+		date.getMinutes()+":"+
+		date.getSeconds()+"."+
+		date.getMilliseconds();
+
 	let xhr = new XMLHttpRequest();
-	xhr.open("POST", this.uploadEndpoint, true);
+	xhr.open("POST", this.uploadEndpoint+"/"+dateStr, true);
 	xhr.timeout = 21600000; // 6 hours, to account for slow connections
 
 	// Report progress updates back to the caller
