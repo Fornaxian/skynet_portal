@@ -101,17 +101,8 @@ UploadManager.prototype.uploadThread = function() {
 	let form = new FormData();
 	form.append('file', job.file, job.name);
 
-	let date = new Date();
-	let dateStr = date.getFullYear()+"-"+
-		date.getMonth()+"-"+
-		date.getDay()+" "+
-		date.getHours()+":"+
-		date.getMinutes()+":"+
-		date.getSeconds()+"."+
-		date.getMilliseconds();
-
 	let xhr = new XMLHttpRequest();
-	xhr.open("POST", this.uploadEndpoint+"/"+dateStr, true);
+	xhr.open("POST", this.uploadEndpoint+"/"+printDate(new Date(), true, true, true, true), true);
 	xhr.timeout = 21600000; // 6 hours, to account for slow connections
 
 	// Report progress updates back to the caller
@@ -171,4 +162,16 @@ UploadManager.prototype.uploadThread = function() {
 		}
 	};
 	xhr.send(form);
+}
+
+function printDate(date, hours, minutes, seconds, milliseconds) {
+	let dateStr = date.getFullYear()
+		+"-"+("00"+(date.getMonth()+1)).slice(-2)
+		+"-"+("00"+date.getDate()).slice(-2)
+
+	if (hours)        { dateStr += " "+("00"+date.getHours()).slice(-2) }
+	if (minutes)      { dateStr += ":"+("00"+date.getMinutes()).slice(-2) }
+	if (seconds)      { dateStr += ":"+("00"+date.getMinutes()).slice(-2) }
+	if (milliseconds) { dateStr += "."+("0000"+date.getMilliseconds()).slice(-4) }
+	return dateStr
 }
