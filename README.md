@@ -1,7 +1,7 @@
 # Fornaxian Portal
 
 This is the portal software for Skynet by Fornaxian Technologies. You can see
-how it works [here](https://sky.pixeldrain.com).
+how it works [here](https://skydrain.net/).
 
 ## Compiling
 
